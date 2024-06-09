@@ -2,6 +2,8 @@ package Client;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 // Client Class
@@ -58,8 +60,8 @@ public class Client {
 
                 String option = reader.readLine();
 
-                assert filesList != null;
-                File file = new File(filesList[Integer.parseInt(option) - 1].getName());
+                Files.createDirectories(Paths.get("C:\\SocketProgrammingPracticeDownloadedFiles\\"));
+                File file = new File("C:\\SocketProgrammingPracticeDownloadedFiles\\" + filesList[Integer.parseInt(option) - 1].getName());
                 FileWriter fw = new FileWriter(file);
                 FileReader fr = new FileReader(filesList[Integer.parseInt(option) - 1]);
 
@@ -72,6 +74,7 @@ public class Client {
 
                 out.writeUTF("<menu>");
                 out.flush();
+                System.out.println("Downloaded!");
             } else {
                 out.writeUTF("-Exit-");
                 out.flush();
